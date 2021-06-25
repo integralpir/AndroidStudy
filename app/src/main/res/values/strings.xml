@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Syzer</string>
+    <string name="settings">Настройки</string>
+    <string name="questions">Руководство</string>
+    <string name="editors">Создатели</string>
+    <string name="text_edit">Введите слово</string>
+    <string name="enter">Поиск…</string>
+    <string name="last_requests">Вы искали ранее:</string>
+    <string name="editors_info">
+        Роман Орлов \n
+        GitHub: https://github.com/integralpir \n
+        2021 год \n
+    </string>
+    <string name="answer">
+        Всё просто: \n
+        В настройках - настраиваете \n
+        В syzer - работаете \n
+        В создателях - я \n
+    </string>
+    <string name="theme_day">Дневная тема</string>
+    <string name="theme_night">Ночная тема</string>
+    <string name="russian">Русский</string>
+    <string name="english">Английский</string>
+    <string name="language_selector">Выбор языка</string>
+    <string name="theme_selector">Выбор темы</string>
+    <string name="drop_history">Сбросить историю поиска</string>
+
+</resources>
