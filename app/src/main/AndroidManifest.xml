@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.syzer">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -8,29 +11,31 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Syzer">
         <activity
-            android:name=".Questions"
+            android:name=".QuestionsDialog"
             android:label="@string/questions"
             android:theme="@style/Theme.AppCompat.Dialog">
 
         </activity>
         <activity
-            android:name=".Editors"
+            android:name=".EditorsDialog"
             android:label="@string/editors"
             android:theme="@style/Theme.AppCompat.Dialog">
 
         </activity>
         <activity
-            android:name=".Settings"
+            android:name=".SettingsActivity"
             android:label="@string/settings"
             android:theme="@style/Theme.Settings">
 
         </activity>
         <activity
-            android:name=".Synzer"
+            android:name=".SynzerActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Synzer">
+            android:theme="@style/Theme.Synzer"
+           >
 
         </activity>
         <activity android:name=".MainActivity">

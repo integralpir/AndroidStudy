@@ -31,22 +31,22 @@ public class MainActivity extends AppCompatActivity {
         getRightSize(editors);
 
         synzer.setOnClickListener(v -> {
-            Intent intent = new Intent(this, Synzer.class);
+            Intent intent = new Intent(this, SynzerActivity.class);
             startActivity(intent);
         });
 
         settings.setOnClickListener(v -> {
-            Intent intent = new Intent(this, Settings.class);
+            Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
         });
 
         questions.setOnClickListener(v -> {
-            Intent intent = new Intent(this, Questions.class);
+            Intent intent = new Intent(this, QuestionsDialog.class);
             startActivity(intent);
         });
 
         editors.setOnClickListener(v -> {
-            Intent intent = new Intent(this, Editors.class);
+            Intent intent = new Intent(this, EditorsDialog.class);
             startActivity(intent);
         });
     }

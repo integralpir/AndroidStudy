@@ -10,24 +10,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class listAdapter extends RecyclerView.Adapter<> {
+public class listAdapter extends RecyclerView.Adapter<listAdapter.ViewHolder> {
 
     List<WordInList> data;
 
-    public listAdapter(List data){
+    public listAdapter(List<WordInList> data){
         this.data = data;
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.word_in_list, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         WordInList wordInList = data.get(position);
-        holder.word.setText();
+        holder.word.setText(wordInList.getWord());
     }
 
     @Override
