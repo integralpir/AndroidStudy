@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class EditorsDialog extends AppCompatActivity {
+public class HomeTask10Requests extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_editors);
+        setContentView(R.layout.activity_home_task10_requests);
     }
 }

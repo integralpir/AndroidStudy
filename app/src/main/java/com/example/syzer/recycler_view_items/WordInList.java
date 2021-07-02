@@ -1,4 +1,4 @@
-package com.example.syzer;
+package com.example.syzer.recycler_view_items;
 
 public class WordInList {
 

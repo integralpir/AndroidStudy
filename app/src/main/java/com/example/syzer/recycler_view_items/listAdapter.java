@@ -1,12 +1,13 @@
-package com.example.syzer;
+package com.example.syzer.recycler_view_items;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.syzer.R;
 
 import java.util.List;
 
@@ -32,8 +33,9 @@ public class listAdapter extends RecyclerView.Adapter<listAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 0;
+        return data.size();
     }
+
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView word;

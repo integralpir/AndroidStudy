@@ -57,6 +57,15 @@
             android:text="@string/editors"
             android:backgroundTint="@color/purple_500"
             />
+
+        <Button
+            android:id="@+id/go_to_request_home_task"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:text="Домашнее \n задание \n 10 запросов"
+            android:backgroundTint="@color/teal_200"
+            />
     </LinearLayout>
 
 </LinearLayout>

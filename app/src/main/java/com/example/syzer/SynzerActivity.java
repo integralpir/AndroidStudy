@@ -5,24 +5,29 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.syzer.recycler_view_items.WordInList;
+import com.example.syzer.recycler_view_items.listAdapter;
+import com.example.syzer.request_items.RequestResult;
+import com.example.syzer.request_items.RetrofitService;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.Observable;
-import okhttp3.OkHttpClient;
+
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SynzerActivity extends AppCompatActivity {
@@ -36,7 +41,7 @@ public class SynzerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_synzer);
-        initRetrofit();
+        getRequest();
 
 
         word = findViewById(R.id.text_editor);
@@ -46,42 +51,61 @@ public class SynzerActivity extends AppCompatActivity {
         list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         list.setAdapter(new listAdapter(mock()));
 
-
         enter.setOnClickListener(v -> {
             enteringWord = word.getText().toString();
             Toast.makeText(this, enteringWord, Toast.LENGTH_SHORT).show();
         });
     }
 
-    private void initRetrofit() {
+    private List<WordInList> mock(){
+        List<WordInList> list = new ArrayList<>();
+        list.add(new WordInList("recycler"));
+        list.add(new WordInList("view"));
+        list.add(new WordInList("наконец"));
+        list.add(new WordInList("заработал"));
+        return list;
+    }
+
+    private void getRequest(){
+        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+        httpLoggingInterceptor.level(HttpLoggingInterceptor.Level.BODY);
+
         OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(new IntEx())
+                .addInterceptor(httpLoggingInterceptor)
                 .build();
 
         Retrofit retrofit = (new Retrofit.Builder())
                 .baseUrl("http://numbersapi.com/")
                 .addConverterFactory(GsonConverterFactory.create(new Gson()))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(client)
                 .build();
 
         RetrofitService service = retrofit.create(RetrofitService.class);
 
-        service.number(123L).enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                String a = "";
-            }
+        service.number(123L)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<RequestResult>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
 
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Log.d(call.toString(), t.getMessage());
-            }
-        });
-    }
+                    }
 
-    private List<WordInList> mock(){
-        List<WordInList> list = new ArrayList<>();
-        list.add(new WordInList("enteringWord"));
-        return list;
+                    @Override
+                    public void onNext(@NonNull RequestResult requestResult) {
+
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }

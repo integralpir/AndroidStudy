@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.widget.Button;
+
+import com.example.syzer.dialogs.EditorsDialog;
+import com.example.syzer.dialogs.QuestionsDialog;
+
+import okhttp3.Interceptor;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     Button settings;
     Button questions;
     Button editors;
+    Button homeTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +29,7 @@ public class MainActivity extends AppCompatActivity {
         settings = findViewById(R.id.go_to_settings);
         questions = findViewById(R.id.go_to_questions);
         editors = findViewById(R.id.go_to_editors);
-
-        getRightSize(synzer);
-        getRightSize(settings);
-        getRightSize(questions);
-        getRightSize(editors);
+        homeTask = findViewById(R.id.go_to_request_home_task);
 
         synzer.setOnClickListener(v -> {
             Intent intent = new Intent(this, SynzerActivity.class);
@@ -49,14 +50,10 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, EditorsDialog.class);
             startActivity(intent);
         });
-    }
 
-    protected void getRightSize(Button button){
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        int width = displayMetrics.widthPixels / 2;
-        int height = displayMetrics.heightPixels / 2;
-        button.setWidth(width);
-        button.setHeight(height);
+        homeTask.setOnClickListener(v -> {
+            Intent intent = new Intent(this, HomeTask10Requests.class);
+            startActivity(intent);
+        });
     }
 }
