@@ -20,6 +20,7 @@ import java.util.List;
 
 
 import io.reactivex.Observer;
+import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
@@ -37,13 +38,13 @@ public class SynzerActivity extends AppCompatActivity {
     Button enter;
     RecyclerView list;
     String enteringWord;
+    RetrofitService retrofitService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_synzer);
         getRequest();
-
 
         word = findViewById(R.id.text_editor);
         enter = findViewById(R.id.enter);
@@ -55,6 +56,7 @@ public class SynzerActivity extends AppCompatActivity {
         enter.setOnClickListener(v -> {
             enteringWord = word.getText().toString();
             Toast.makeText(this, enteringWord, Toast.LENGTH_SHORT).show();
+            getSimpleRequest(enteringWord);
         });
     }
 
@@ -82,29 +84,26 @@ public class SynzerActivity extends AppCompatActivity {
                 .client(client)
                 .build();
 
-        RetrofitService service = retrofit.create(RetrofitService.class);
+        retrofitService = retrofit.create(RetrofitService.class);
+    }
 
-        service.number(123L)
+    private void getSimpleRequest(String enteringWord){
+        retrofitService.number(Long.parseLong(enteringWord))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<RequestResult>() {
+                .subscribe(new SingleObserver<RequestResult>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(@NonNull RequestResult requestResult) {
+                    public void onSuccess(@NonNull RequestResult requestResult) {
 
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
 
                     }
                 });

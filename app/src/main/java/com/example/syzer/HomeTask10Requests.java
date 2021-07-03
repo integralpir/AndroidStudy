@@ -29,7 +29,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeTask10Requests extends AppCompatActivity {
 
-    Button getListUsers;
     Button getSingleUser;
     Button singleUserNotFound;
     Button getListResources;
@@ -51,7 +50,7 @@ public class HomeTask10Requests extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_task10_requests);
 
-        getListUsers = findViewById(R.id.get_list_users_id);
+        Button getListUsers = findViewById(R.id.get_list_users_id);
         getSingleUser = findViewById(R.id.get_single_user);
         singleUserNotFound = findViewById(R.id.single_user_not_found_id);
         getListResources = findViewById(R.id.get_list_resources_id);
