@@ -6,4 +6,130 @@
     android:layout_height="match_parent"
     tools:context=".HomeTask10Requests">
 
+    <Button
+        android:id="@+id/get_list_users_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="GET LIST USER"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <Button
+        android:id="@+id/get_single_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GET SINGLE USER"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/get_list_users_id"
+        />
+
+    <Button
+        android:id="@+id/single_user_not_found_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SINGLE USER NOT FOUND"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/get_single_user"
+        />
+
+    <Button
+        android:id="@+id/get_list_resources_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GET LIST RESOURCES"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/single_user_not_found_id"
+        />
+
+    <Button
+        android:id="@+id/get_single_resources_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GET SINGLE RESOURCE"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/get_list_resources_id"
+        />
+
+    <Button
+        android:id="@+id/single_resource_not_found_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SINGLE RESOURCE NOT FOUND"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/get_single_resources_id"
+        />
+
+    <Button
+        android:id="@+id/post_new_user_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CREATE USER"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/single_resource_not_found_id"
+        />
+
+    <Button
+        android:id="@+id/put_user_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UPDATE USER (PUT)"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/post_new_user_id"
+        />
+
+    <Button
+        android:id="@+id/patch_user_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UPDATE USER (PATCH)"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/put_user_id"
+        />
+
+    <Button
+        android:id="@+id/delete_button_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DELETE USER"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/patch_user_id"
+        />
+
+
+    <TextView
+        android:id="@+id/result_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Результат запроса"
+        android:textSize="20sp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/test_text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/test_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TEST"
+        android:textSize="20sp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
