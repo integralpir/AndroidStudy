@@ -21,7 +21,7 @@ public class listAdapter extends RecyclerView.Adapter<listAdapter.ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.word_in_list, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.text_in_list, parent, false);
         return new ViewHolder(view);
     }
 

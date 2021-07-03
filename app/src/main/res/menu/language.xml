@@ -4,10 +4,10 @@
         <item
             android:id="@+id/russian_language"
             android:icon="@mipmap/ic_launcher"
-            android:title="@string/russian"/>
+            android:title="@string/russian_string"/>
         <item
             android:id="@+id/english_language"
             android:icon="@mipmap/ic_launcher"
-            android:title="@string/english"/>
+            android:title="@string/english_string"/>
     </group>
 </menu>

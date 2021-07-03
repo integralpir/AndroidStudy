@@ -3,26 +3,47 @@
     <string name="settings">Настройки</string>
     <string name="questions">Руководство</string>
     <string name="editors">Создатели</string>
-    <string name="text_edit">Введите слово</string>
-    <string name="enter">Поиск…</string>
-    <string name="last_requests">Вы искали ранее:</string>
-    <string name="editors_info">
+
+    <!--Main Activity-->
+    <string name="app_name_string">Syzer</string>
+    <string name="settings_string">Настройки</string>
+    <string name="questions_string">Руководство</string>
+    <string name="editors_string">Создатели</string>
+    <string name="home_task_string">
+        Домашнее\n
+        задание\n
+        10 запросов
+    </string>
+
+    <!--Syzer Activity-->
+    <string name="text_edit_string">Введите число</string>
+    <string name="default_choice_string">Случайное число</string>
+    <string name="enter_string">Поиск…</string>
+    <string name="last_requests_string">Вы искали ранее:</string>
+
+    <!--Editors Dialog-->
+    <string name="editors_info_string">
         Роман Орлов \n
         GitHub: https://github.com/integralpir \n
         2021 год \n
     </string>
-    <string name="answer">
+
+    <!--Answer Dialog-->
+    <string name="answer_string">
         Всё просто: \n
         В настройках - настраиваете \n
         В syzer - работаете \n
         В создателях - я \n
     </string>
-    <string name="theme_day">Дневная тема</string>
-    <string name="theme_night">Ночная тема</string>
-    <string name="russian">Русский</string>
-    <string name="english">Английский</string>
-    <string name="language_selector">Выбор языка</string>
-    <string name="theme_selector">Выбор темы</string>
-    <string name="drop_history">Сбросить историю поиска</string>
 
+    <!--Settings Activity-->
+    <string name="theme_day_string">Дневная тема</string>
+    <string name="theme_night_string">Ночная тема</string>
+    <string name="russian_string">Русский</string>
+    <string name="english_string">Английский</string>
+    <string name="language_selector_string">Выбор языка</string>
+    <string name="theme_selector_string">Выбор темы</string>
+    <string name="drop_history_string">Сбросить историю поиска</string>
+
+    <!--Home Task Activity-->
 </resources>

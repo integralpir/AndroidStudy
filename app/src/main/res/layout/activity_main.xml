@@ -19,8 +19,8 @@
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:layout_weight="1"
-            android:text="@string/settings"
-            android:backgroundTint="@color/tomato_500"
+            android:text="@string/settings_string"
+            android:backgroundTint="@color/medium_violet_red"
             />
 
         <Button
@@ -28,8 +28,8 @@
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:layout_weight="1"
-            android:text="@string/app_name"
-            android:backgroundTint="@color/medium_violet_red"
+            android:text="@string/app_name_string"
+            android:backgroundTint="@color/tomato_500"
             />
 
     </LinearLayout>
@@ -45,7 +45,7 @@
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:layout_weight="1"
-            android:text="@string/questions"
+            android:text="@string/questions_string"
             android:backgroundTint="@color/purple_200"
             />
 
@@ -54,7 +54,7 @@
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:layout_weight="1"
-            android:text="@string/editors"
+            android:text="@string/editors_string"
             android:backgroundTint="@color/purple_500"
             />
 
@@ -63,7 +63,7 @@
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:layout_weight="1"
-            android:text="Домашнее \n задание \n 10 запросов"
+            android:text="@string/home_task_string"
             android:backgroundTint="@color/teal_200"
             />
     </LinearLayout>

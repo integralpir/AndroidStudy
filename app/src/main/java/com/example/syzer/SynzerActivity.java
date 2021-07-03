@@ -39,6 +39,7 @@ public class SynzerActivity extends AppCompatActivity {
     RecyclerView list;
     String enteringWord;
     RetrofitService retrofitService;
+    Long number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +56,11 @@ public class SynzerActivity extends AppCompatActivity {
 
         enter.setOnClickListener(v -> {
             enteringWord = word.getText().toString();
-            Toast.makeText(this, enteringWord, Toast.LENGTH_SHORT).show();
-            getSimpleRequest(enteringWord);
+            if (!enteringWord.isEmpty()) {
+                getSimpleRequest(enteringWord);
+            } else {
+                getDefaultRequest();
+            }
         });
     }
 
@@ -89,6 +93,28 @@ public class SynzerActivity extends AppCompatActivity {
 
     private void getSimpleRequest(String enteringWord){
         retrofitService.number(Long.parseLong(enteringWord))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<RequestResult>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(@NonNull RequestResult requestResult) {
+
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+                });
+    }
+
+    private void getDefaultRequest(){
+        retrofitService.number()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new SingleObserver<RequestResult>() {
