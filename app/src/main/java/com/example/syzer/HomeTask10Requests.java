@@ -44,8 +44,7 @@ public class HomeTask10Requests extends AppCompatActivity {
     QuestInterface questInterface;
 
     HashMap<String, String> parametersForPutAndPatch;
-    String nameForPost;
-    String jobForPost;
+    HashMap<String, String> parametersForPost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +82,9 @@ public class HomeTask10Requests extends AppCompatActivity {
         parametersForPutAndPatch.put("name", "morpheus");
         parametersForPutAndPatch.put("job", "zion resident");
 
-        nameForPost = "morpheus";
-        jobForPost = "leader";
+        parametersForPost = new HashMap<>();
+        parametersForPost.put("name", "morpheus");
+        parametersForPost.put("job", "leader");
 
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.level(HttpLoggingInterceptor.Level.BODY);
@@ -234,7 +234,7 @@ public class HomeTask10Requests extends AppCompatActivity {
     }
 
     private void createUser(){
-        questInterface.createNewUser(nameForPost, jobForPost)
+        questInterface.createNewUser(parametersForPost)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new CompletableObserver() {

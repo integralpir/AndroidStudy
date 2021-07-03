@@ -34,8 +34,7 @@ public interface QuestInterface {
     Completable singleResourceNotFound(@Path("id") int id);
 
     @POST("/api/users")
-    Completable createNewUser(@Field("name") String name,
-                              @Field("job") String job);
+    Completable createNewUser(@Body HashMap<String, String> parameters);
 
     @PUT("/api/users/{id}")
     Single<User> putUser(@Path("id") int id, @Body HashMap<String, String> parameters);
