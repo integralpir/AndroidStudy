@@ -19,6 +19,7 @@ import io.reactivex.CompletableObserver;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
@@ -28,6 +29,8 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeTask10Requests extends AppCompatActivity {
+
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     Button getSingleUser;
     Button singleUserNotFound;
@@ -103,222 +106,78 @@ public class HomeTask10Requests extends AppCompatActivity {
     }
 
     private void getListUsers(){
-        questInterface.getListUsers(2)
+        compositeDisposable.add(questInterface.getListUsers(2)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleObserver<ListUsers>() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onSuccess(@NonNull ListUsers listUsers) {
-                        testText.setText("GET LIST USERS SUCCESS");
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-
-                    }
-                });
+                .subscribe((v) -> testText.setText("GET LIST USERS SUCCESS")));
     }
 
     private void getSingleUser(){
-        questInterface.getSingleUser(2)
+        compositeDisposable.add(questInterface.getSingleUser(2)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleObserver<User>() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onSuccess(@NonNull User user) {
-                        testText.setText("GET SINGLE USER SUCCESS");
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-
-                    }
-                });
+                .subscribe((v) -> testText.setText("GET SINGLE USER SUCCESS")));
     }
 
     private void singleUserNotFound(){
-        questInterface.singleUserNotFound(23)
+        compositeDisposable.add(questInterface.singleUserNotFound(23)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new CompletableObserver() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-                    }
-
-                    @Override
-                    public void onComplete() {
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        testText.setText("SINGLE USER NOT FOUND SUCCESS");
-                    }
-                });
+                .subscribe(() -> {},(v) -> testText.setText("SINGLE USER NOT FOUND SUCCESS")));
     }
 
     private void getListResources(){
-        questInterface.getListResource()
+        compositeDisposable.add(questInterface.getListResource()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleObserver<ListResources>() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onSuccess(@NonNull ListResources listResources) {
-                        testText.setText("GET LIST RESOURCE SUCCESS");
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-
-                    }
-                });
+                .subscribe((v) -> testText.setText("GET LIST RESOURCES SUCCESS")));
     }
 
     private void getSingleResource(){
-        questInterface.getSingleResource(2)
+        compositeDisposable.add(questInterface.getSingleResource(2)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleObserver<Resource>() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onSuccess(@NonNull Resource resource) {
-                        testText.setText("GET SINGLE RESOURCE SUCCESS");
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-
-                    }
-                });
+                .subscribe((v) -> testText.setText("GET SINGLE RESOURCE SUCCESS")));
     }
 
     private void singleResourceNotFound(){
-        questInterface.singleResourceNotFound(23)
+        compositeDisposable.add(questInterface.singleResourceNotFound(23)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new CompletableObserver() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        testText.setText("SINGLE RESOURCE NOT FOUND SUCCESS");
-                    }
-                });
+                .subscribe(() -> {}, (v) -> testText.setText("SINGLE RESOURCE NOT FOUND SUCCESS")));
     }
 
     private void createUser(){
-        questInterface.createNewUser(parametersForPost)
+        compositeDisposable.add(questInterface.createNewUser(parametersForPost)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new CompletableObserver() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        testText.setText("POST USER SUCCESS");
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-
-                    }
-                });
+                .subscribe(() -> testText.setText("CREATE USER SUCCESS")));
     }
 
     private void updateUserPut(){
-        questInterface.putUser(2, parametersForPutAndPatch)
+        compositeDisposable.add(questInterface.putUser(2, parametersForPutAndPatch)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleObserver<User>() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onSuccess(@NonNull User user) {
-                        testText.setText("PUT USER SUCCESS");
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-
-                    }
-                });
+                .subscribe((v) -> testText.setText("PUT USER SUCCESS")));
     }
 
     private void updateUserPatch(){
-        questInterface.patchUser(2, parametersForPutAndPatch)
+        compositeDisposable.add(questInterface.patchUser(2, parametersForPutAndPatch)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleObserver<User>() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onSuccess(@NonNull User user) {
-                        testText.setText("PATCH USER SUCCESS");
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-
-                    }
-                });
+                .subscribe((v) -> testText.setText("PATCH USER SUCCESS")));
     }
 
     private void deleteUser(){
-        questInterface.deleteUser(2)
+        compositeDisposable.add(questInterface.deleteUser(2)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new CompletableObserver() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        testText.setText("DELETE SUCCESS");
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-
-                    }
-                });
+                .subscribe(() -> testText.setText("DELETE USER SUCCESS")));
     }
 
+    @Override
+    protected void onDestroy() {
+        compositeDisposable.dispose();
+        super.onDestroy();
+    }
 }

@@ -39,7 +39,7 @@ public class SynzerActivity extends AppCompatActivity {
     RecyclerView list;
     String enteringWord;
     RetrofitService retrofitService;
-    Long number;
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +56,8 @@ public class SynzerActivity extends AppCompatActivity {
 
         enter.setOnClickListener(v -> {
             enteringWord = word.getText().toString();
-            if (!enteringWord.isEmpty()) {
-                getSimpleRequest(enteringWord);
-            } else {
-                getDefaultRequest();
-            }
+            if (!enteringWord.isEmpty()) getSimpleRequest(enteringWord);
+            else getDefaultRequest();
         });
     }
 
@@ -92,46 +89,22 @@ public class SynzerActivity extends AppCompatActivity {
     }
 
     private void getSimpleRequest(String enteringWord){
-        retrofitService.number(Long.parseLong(enteringWord))
+        compositeDisposable.add(retrofitService.number(Long.parseLong(enteringWord))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleObserver<RequestResult>() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onSuccess(@NonNull RequestResult requestResult) {
-
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-
-                    }
-                });
+                .subscribe());
     }
 
     private void getDefaultRequest(){
-        retrofitService.number()
+        compositeDisposable.add(retrofitService.number()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleObserver<RequestResult>() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
+                .subscribe());
+    }
 
-                    }
-
-                    @Override
-                    public void onSuccess(@NonNull RequestResult requestResult) {
-
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-
-                    }
-                });
+    @Override
+    protected void onDestroy() {
+        compositeDisposable.dispose();
+        super.onDestroy();
     }
 }
