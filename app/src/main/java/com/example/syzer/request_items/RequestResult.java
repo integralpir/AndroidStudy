@@ -1,5 +1,6 @@
 package com.example.syzer.request_items;
 
+
 public class RequestResult {
     private String text;
     private Boolean found;

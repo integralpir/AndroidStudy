@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
     Button settings;
     Button questions;
     Button editors;
-    Button homeTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         settings = findViewById(R.id.go_to_settings);
         questions = findViewById(R.id.go_to_questions);
         editors = findViewById(R.id.go_to_editors);
-        homeTask = findViewById(R.id.go_to_request_home_task);
 
         synzer.setOnClickListener(v -> {
             Intent intent = new Intent(this, SynzerActivity.class);
@@ -48,11 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
         editors.setOnClickListener(v -> {
             Intent intent = new Intent(this, EditorsDialog.class);
-            startActivity(intent);
-        });
-
-        homeTask.setOnClickListener(v -> {
-            Intent intent = new Intent(this, HomeTask10Requests.class);
             startActivity(intent);
         });
     }
