@@ -41,20 +41,20 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/go_to_questions"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:text="@string/questions_string"
-            android:backgroundTint="@color/purple_200"
-            />
-
-        <Button
             android:id="@+id/go_to_editors"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:text="@string/editors_string"
+            android:backgroundTint="@color/purple_200"
+            />
+
+        <Button
+            android:id="@+id/go_to_history"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:text="@string/history_string"
             android:backgroundTint="@color/purple_500"
             />
     </LinearLayout>

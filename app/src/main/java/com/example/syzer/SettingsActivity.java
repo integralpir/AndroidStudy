@@ -3,16 +3,29 @@ package com.example.syzer;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import com.example.syzer.data.AppDatabase;
+import com.example.syzer.data.NumberDao;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
+
 public class SettingsActivity extends AppCompatActivity {
+
+    CompositeDisposable compositeDisposable = new CompositeDisposable();
+    AppDatabase database = App.getInstance().getDatabase();
+    NumberDao dao = database.numberDao();
 
     Button langSelector;
     Button themSelector;
+    Button dropDataBase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,14 +34,24 @@ public class SettingsActivity extends AppCompatActivity {
 
         langSelector = findViewById(R.id.language_selector);
         themSelector = findViewById(R.id.theme_selector);
+        dropDataBase = findViewById(R.id.drop_history);
 
-        themSelector.setOnClickListener(v -> {
-            showPopupMenuTheme(v);
+        dropDataBase.setOnClickListener(v -> {
+            dropDataBase();
         });
 
-        langSelector.setOnClickListener(v -> {
-            showPopupMenuLanguage(v);
-        });
+        themSelector.setOnClickListener(this::showPopupMenuTheme);
+
+        langSelector.setOnClickListener(this::showPopupMenuLanguage);
+    }
+
+    private void dropDataBase(){
+        compositeDisposable.add(dao.deleteAll()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(() -> {
+                Log.d("DELETE", "SUCCESS");
+            }));
     }
 
     private void showPopupMenuLanguage(View v){
@@ -75,5 +98,11 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         popupMenu.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        compositeDisposable.dispose();
+        super.onDestroy();
     }
 }

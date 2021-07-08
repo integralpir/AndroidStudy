@@ -8,14 +8,15 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.syzer.R;
+import com.example.syzer.data.Number;
 
 import java.util.List;
 
-public class listAdapter extends RecyclerView.Adapter<listAdapter.ViewHolder> {
+public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
-    List<WordInList> data;
+    List<Number> data;
 
-    public listAdapter(List<WordInList> data){
+    public ListAdapter(List<Number> data){
         this.data = data;
     }
 
@@ -27,8 +28,9 @@ public class listAdapter extends RecyclerView.Adapter<listAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        WordInList wordInList = data.get(position);
-        holder.word.setText(wordInList.getWord());
+        Number wordInList = data.get(position);
+        holder.number.setText(wordInList.number);
+        holder.fact.setText(wordInList.fact);
     }
 
     @Override
@@ -38,11 +40,13 @@ public class listAdapter extends RecyclerView.Adapter<listAdapter.ViewHolder> {
 
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView word;
+        TextView number;
+        TextView fact;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            word = itemView.findViewById(R.id.word_in_list);
+            number = itemView.findViewById(R.id.number_in_list);
+            fact = itemView.findViewById(R.id.text_in_list);
         }
     }
 }

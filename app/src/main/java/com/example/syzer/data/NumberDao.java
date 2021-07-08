@@ -11,16 +11,21 @@ import androidx.room.Update;
 import java.util.List;
 
 import io.reactivex.Completable;
+import io.reactivex.Flowable;
+import io.reactivex.Observable;
 import io.reactivex.Single;
 
 @Dao
 public interface NumberDao {
 
     @Query("SELECT * FROM number")
-    Single<List<Number>> getAll();
+    Observable<List<Number>> getAll();
 
-    @Query("SELECT * FROM number WHERE id = :id")
-    Single<Number> getById(Long id);
+    @Query("DELETE FROM number")
+    Completable deleteAll();
+
+    @Query("SELECT COUNT(*) FROM number")
+    Long countNumber();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     Completable insert(Number number);

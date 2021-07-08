@@ -6,15 +6,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.syzer.data.AppDatabase;
 import com.example.syzer.data.Number;
 import com.example.syzer.data.NumberDao;
 import com.example.syzer.dialogs.ResultDialog;
 import com.example.syzer.recycler_view_items.WordInList;
-import com.example.syzer.recycler_view_items.listAdapter;
+import com.example.syzer.recycler_view_items.ListAdapter;
 import com.example.syzer.request_items.RetrofitService;
 
 import java.util.ArrayList;
@@ -32,12 +34,13 @@ public class SynzerActivity extends AppCompatActivity {
     AppDatabase database = App.getInstance().getDatabase();
     NumberDao dao = database.numberDao();
 
+    TextView result;
     EditText word;
     Button enter;
-    RecyclerView list;
+
     String enteringWord;
 
-    List<WordInList> listForRecyclerView = new ArrayList<>();
+    List<Number> numberList;
 
 
     @Override
@@ -47,72 +50,37 @@ public class SynzerActivity extends AppCompatActivity {
 
         word = findViewById(R.id.text_editor);
         enter = findViewById(R.id.enter);
-        list = findViewById(R.id.word_list);
+        result = findViewById(R.id.result_txt);
 
-        list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        list.setAdapter(new listAdapter(getDataBaseInfo()));
 
         enter.setOnClickListener(v -> {
             enteringWord = word.getText().toString();
-            Number number = new Number();
-            number.id = 1;
 
-            if (!enteringWord.isEmpty()) {
-                number.number = "RANDOM";
-                getSimpleRequest(enteringWord, number);
-            } else {
-                number.number = enteringWord;
-                getDefaultRequest(number);
-            }
-
-            insertNumberIntoDataBase(number);
-            list.setAdapter(new listAdapter(getDataBaseInfo()));
-
-            /*
-            Intent intent = new Intent(this, ResultDialog.class);
-            intent.putExtra("result", number.fact);
-            startActivity(intent);
-
-             */
+            if (!enteringWord.isEmpty()) getSimpleRequest(enteringWord);
+            else getDefaultRequest();
         });
     }
 
-
-    private List<WordInList> getDataBaseInfo(){
-        compositeDisposable.add(dao.getAll()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((v) -> {
-                    for (Number n : v){
-                        listForRecyclerView.add(new WordInList(n.number));
-                    }
-                }));
-
-        return listForRecyclerView;
-    }
-
-    private void insertNumberIntoDataBase(Number num){
-        compositeDisposable.add(dao.insert(num)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe());
-    }
-
-    private void getSimpleRequest(String enteringWord, Number num){
+    private void getSimpleRequest(String enteringWord){
         compositeDisposable.add(retrofitService.number(Long.parseLong(enteringWord))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((v) -> {
-                    num.fact = v.getText();
+                    Number number = new Number();
+                    number.number = v.getNumber().toString();
+                    number.fact = v.getText();
+                    dao.insert(number);
+                    result.setText(v.getText());
+                    Log.d("INSERT", "SUCCESS");
                 }));
     }
 
-    private void getDefaultRequest(Number num){
+    private void getDefaultRequest(){
         compositeDisposable.add(retrofitService.number()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((v) -> {
-                    num.fact = v.getText();
+                    result.setText(v.getText());
                 }));
 
     }

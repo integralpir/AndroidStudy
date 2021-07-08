@@ -2,17 +2,25 @@ package com.example.syzer.recycler_view_items;
 
 public class WordInList {
 
-    private String word;
+    private String number;
+    private String text;
 
-    public WordInList(String word) {
-        this.word = word;
+    public WordInList(String number, String text) {
+        this.number = number;
+        this.text = text;
     }
 
-    public String getWord() {
-        return word;
+    public String getNumber() {
+        return number;
     }
 
-    public void setWord(String word) {
-        this.word = word;
+    public String getText() {
+        return text;
     }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setNumber(String number) { this.number = number; }
 }

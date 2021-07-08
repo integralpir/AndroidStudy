@@ -1,25 +1,27 @@
 <resources>
     <string name="app_name">Syzer</string>
     <string name="settings">Настройки</string>
-    <string name="questions">Руководство</string>
+    <string name="history">История</string>
     <string name="editors">Создатели</string>
 
     <!--Main Activity-->
     <string name="app_name_string">Syzer</string>
     <string name="settings_string">Настройки</string>
-    <string name="questions_string">Руководство</string>
+    <string name="history_string">История</string>
     <string name="editors_string">Создатели</string>
-    <string name="home_task_string">
-        Домашнее\n
-        задание\n
-        10 запросов
-    </string>
+
 
     <!--Syzer Activity-->
     <string name="text_edit_string">Введите число</string>
     <string name="default_choice_string">Случайное число</string>
     <string name="enter_string">Поиск…</string>
+    <string name="result_string">Результат:</string>
+    <string name="result_txt_string"></string>
+
+
+    <!--History Activity-->
     <string name="last_requests_string">Вы искали ранее:</string>
+
 
     <!--Editors Dialog-->
     <string name="editors_info_string">
@@ -28,13 +30,6 @@
         2021 год \n
     </string>
 
-    <!--Answer Dialog-->
-    <string name="answer_string">
-        Всё просто: \n
-        В настройках - настраиваете \n
-        В syzer - работаете \n
-        В создателях - я \n
-    </string>
 
     <!--Settings Activity-->
     <string name="theme_day_string">Дневная тема</string>

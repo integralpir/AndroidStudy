@@ -7,15 +7,12 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.example.syzer.dialogs.EditorsDialog;
-import com.example.syzer.dialogs.QuestionsDialog;
-
-import okhttp3.Interceptor;
 
 public class MainActivity extends AppCompatActivity {
 
     Button synzer;
     Button settings;
-    Button questions;
+    Button history;
     Button editors;
 
     @Override
@@ -26,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         synzer = findViewById(R.id.go_to_synzer);
         settings = findViewById(R.id.go_to_settings);
-        questions = findViewById(R.id.go_to_questions);
+        history = findViewById(R.id.go_to_history);
         editors = findViewById(R.id.go_to_editors);
 
         synzer.setOnClickListener(v -> {
@@ -39,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        questions.setOnClickListener(v -> {
-            Intent intent = new Intent(this, QuestionsDialog.class);
+        history.setOnClickListener(v -> {
+            Intent intent = new Intent(this, HistoryOfSearchActivity.class);
             startActivity(intent);
         });
 
