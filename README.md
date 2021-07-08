@@ -1,4 +1,7 @@
 # AndroidStudy
+## Курс по разработке приложений на ОС Android. Орлов Роман.
+
+Используемое API: Numbers API <a href='http://numbersapi.com/#42'>http://numbersapi.com/#42</a>
 Для реализации проекта я выбрал библиотеку Room
 Помимо неё рассматривал Realm и стандартный набор функций SQLiteOpenHelper
 
