@@ -51,6 +51,8 @@ public class SettingsActivity extends AppCompatActivity {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(() -> {
                 Log.d("DELETE", "SUCCESS");
+            }, (v) -> {
+                Log.d("DELETE", v.getMessage());
             }));
     }
 

@@ -27,7 +27,7 @@ public interface NumberDao {
     @Query("SELECT COUNT(*) FROM number")
     Long countNumber();
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     Completable insert(Number number);
 
     @Update

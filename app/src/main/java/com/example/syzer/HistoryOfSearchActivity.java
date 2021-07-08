@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 
 import com.example.syzer.data.AppDatabase;
 import com.example.syzer.data.Number;
@@ -29,7 +30,6 @@ public class HistoryOfSearchActivity extends AppCompatActivity {
     RecyclerView list;
     ListAdapter listAdapter;
 
-
     List<Number> dataList;
 
     @Override
@@ -43,6 +43,7 @@ public class HistoryOfSearchActivity extends AppCompatActivity {
         list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         listAdapter = new ListAdapter(dataList);
         list.setAdapter(listAdapter);
+
         getData();
     }
 
@@ -51,10 +52,10 @@ public class HistoryOfSearchActivity extends AppCompatActivity {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe((v) -> {
-                Log.d("GETALL", "START");
-                dataList.addAll(v);
-                listAdapter.notifyDataSetChanged();
-                Log.d("GETALL", "END");
+                listAdapter.updateList(v);
+                Log.d("GETALL", "SUCCESS");
+            },(v) -> {
+                Log.d("GETALL", v.getMessage());
             }));
     }
 

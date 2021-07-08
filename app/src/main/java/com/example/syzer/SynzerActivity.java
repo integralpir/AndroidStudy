@@ -40,8 +40,6 @@ public class SynzerActivity extends AppCompatActivity {
 
     String enteringWord;
 
-    List<Number> numberList;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +67,9 @@ public class SynzerActivity extends AppCompatActivity {
                     Number number = new Number();
                     number.number = v.getNumber().toString();
                     number.fact = v.getText();
-                    dao.insert(number);
                     result.setText(v.getText());
-                    Log.d("INSERT", "SUCCESS");
+                    Log.d("REQUEST", "SUCCESS");
+                    insertInDataBase(number);
                 }));
     }
 
@@ -81,8 +79,20 @@ public class SynzerActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((v) -> {
                     result.setText(v.getText());
+                    Log.d("REQUEST", "SUCCESS");
                 }));
 
+    }
+
+    private void insertInDataBase(Number number){
+        compositeDisposable.add(dao.insert(number)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(() -> {
+                Log.d("INSERT", "SUCCESS");
+            }, (v) -> {
+                Log.d("INSERT", v.getMessage());
+            }));
     }
 
     @Override

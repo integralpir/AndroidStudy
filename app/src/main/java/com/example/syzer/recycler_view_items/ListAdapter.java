@@ -38,6 +38,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         return data.size();
     }
 
+    public void updateList(List<Number> list){
+        data = list;
+        notifyDataSetChanged();
+    }
+
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView number;
