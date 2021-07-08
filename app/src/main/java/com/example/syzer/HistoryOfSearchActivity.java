@@ -54,7 +54,6 @@ public class HistoryOfSearchActivity extends AppCompatActivity {
                 Log.d("GETALL", "START");
                 dataList.addAll(v);
                 listAdapter.notifyDataSetChanged();
-                list.hasPendingAdapterUpdates();
                 Log.d("GETALL", "END");
             }));
     }
