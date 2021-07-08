@@ -53,8 +53,8 @@ public class HistoryOfSearchActivity extends AppCompatActivity {
             .subscribe((v) -> {
                 Log.d("GETALL", "START");
                 dataList.addAll(v);
-                listAdapter = new ListAdapter(dataList);
                 listAdapter.notifyDataSetChanged();
+                list.hasPendingAdapterUpdates();
                 Log.d("GETALL", "END");
             }));
     }
